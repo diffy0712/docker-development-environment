@@ -14,3 +14,20 @@ I prefer to use a `justfile` to create an alias for managing the environment.
 
 ## How to use inside projects
 TODO
+
+
+## Sonarcube
+
+An example to run sonar-scanner.
+
+Note: you must provide a correct `projectKey` and `login`.
+
+```
+sonar-scanner \
+    -Dsonar.projectKey= \
+    -Dsonar.sources=src \
+    -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info \
+    -Dsonar.host.url=http://sonarcube.test \
+    -Dsonar.login= \
+    -Dsonar.exclusions=src/**/*.test.*
+```

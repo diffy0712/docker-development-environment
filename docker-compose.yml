@@ -17,7 +17,30 @@ services:
     networks:
       - shared
 
-  ## TODO: add postgresql service
+  postgres:
+    image: postgres:15.0-bullseye
+    environment:
+      POSTGRES_PASSWORD: root
+    volumes:
+      - ./storage/database/:/var/lib/postgresql/data
+    networks:
+      - shared
+
+  adminer:
+    build:
+      context: ./adminer
+    environment:
+      VIRTUAL_HOST: adminer.test
+      VIRTUAL_PORT: 8080
+      COLOR: 80d5f3
+      ## for different types of deployment use different colors
+
+      ## red f57171  (for prod)
+      ## yellow f5e071 (for testing and staging)
+      ## cyan 71f5cc (for development servers)
+      ## blue 80d5f3 (for local development)
+    networks:
+      - shared
 
 networks:
   shared:

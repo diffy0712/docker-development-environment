@@ -15,10 +15,14 @@ stop:
 down:
 	{{compose}} down -v
 
-## See logs of the environment, arg c for containers. e.g.: make logs c=proxy
+## See logs for containers. e.g.: just logs
 logs:
-	{{compose}} logs -f $(c)
+	{{compose}} logs -f
 
-## See logs of the environment, arg c for containers. e.g.: make logs c=proxy
-sh:
-	{{compose}} exec $(c) sh 
+## See logs for containers. e.g.: just log proxy
+log SERVICE:
+	{{compose}} logs {{SERVICE}} -f
+
+## Get into interactive shell inside containers. e.g.: just sh proxy
+sh SERVICE:
+	{{compose}} exec {{SERVICE}} sh 

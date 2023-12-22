@@ -71,5 +71,14 @@ services:
     networks:
       - shared
 
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    restart: always
+    environment:
+      VIRTUAL_HOST: swagger.test
+      VIRTUAL_PORT: 8080
+    networks:
+      - shared
+
 networks:
   shared:
